@@ -31,8 +31,9 @@ app.get("/api/timestamp/:date_string?", function(req, res) {
 
     res.set({status: 200, 'content-type': 'text/plain' });
 
+
     if(new Date().setSeconds(+dateParam)) {
-        res.send(JSON.stringify({unix: dateParam, natural: new Date(+dateParam * 1000).toUTCString()}));
+        res.send(JSON.stringify({unix: +dateParam, natural: new Date(+dateParam * 1000).toUTCString()}));
     } else if (Date.parse(dateParam)) {
         res.send(JSON.stringify({unix: Date.parse(dateParam) / 1000, natural: new Date(dateParam).toUTCString()}));
     } else {
